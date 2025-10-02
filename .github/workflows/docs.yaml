@@ -1,14 +1,6 @@
 name: Docs
 
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - "docs/**"
-      - "src/lanyard/**"
-      - "example/**"
-      - "pyproject.toml"
   pull_request:
     branches:
       - master
