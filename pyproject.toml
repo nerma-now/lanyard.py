@@ -1,0 +1,82 @@
+[project]
+name = "lanyard-py"
+version = "1.0.0"
+description = "lanyard-py is a modern and fully asynchronous wrapper for Lanyard API written in Python 3.12+."
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "Nikita (nerma-now)", email = "n.ermak2021@yandex.by" },
+]
+maintainers = [
+    { name = "Nikita (nerma-now)", email = "n.ermak2021@yandex.by" },
+]
+keywords = [
+    "api",
+    "lanyard",
+    "wrapper",
+    "asyncio",
+]
+classifiers = [
+    "Development Status :: Pre-release",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28.1",
+    "pydantic>=2.11.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=25.9.0",
+    "mypy>=1.18.2",
+]
+docs = [
+    "sphinx>=8.2.3",
+]
+test = [
+    "pytest>=8.4.2",
+    "pytest-asyncio>=1.2.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/nerma-now/lanyard.py"
+"Documentation" = "https://nerma-now.github.io/lanyard.py/"
+
+[tool.mypy]
+python_version = "3.12"
+pretty = true
+strict = true
+disallow_subclassing_any = false
+
+[[tool.mypy.overrides]]
+module = ["lanyard.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--verbose --strict-markers --strict-config"
+asyncio_mode = "auto"
+markers = [
+    "asyncio: mark test as asynchronous",
+    "slow: mark test as slow running",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[[tool.uv.index]]
+name = "lanyard.py"
+url = "https://test.pypi.org/simple/"
+publish-url = "https://test.pypi.org/legacy/"
+explicit = true

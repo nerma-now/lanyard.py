@@ -1,0 +1,73 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "tests.yaml"
+      - "src/lanyard/**"
+      - "example/**"
+      - "pyproject.toml"
+  pull_request:
+    branches:
+      - master
+    paths:
+      - "tests.yaml"
+      - "src/lanyard/**"
+      - "example/**"
+      - "pyproject.toml"
+
+jobs:
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+        python-version:
+          - "3.12"
+          - "3.13"
+
+    defaults:
+      run:
+        shell: bash
+
+    runs-on: ${{ matrix.os }}
+
+    env:
+      IS_WINDOWS: ${{ startswith(matrix.os, 'windows') }}
+      IS_UBUNTU: ${{ startswith(matrix.os, 'ubuntu') }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Set up Python ${{ matrix.python-version }} on ${{ matrix.os }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+          cache-dependency-path: pyproject.toml
+
+      - name: Install project dependencies
+        run: |
+          pip install -e ".[dev, test]"
+
+      - name: Run type checking
+        run: |
+          uv run mypy src/lanyard
+          uv run mypy example
+
+      - name: Run formatting check
+        run: |
+          uv run black --check --diff src/lanyard example
+
+      - name: Run tests
+        run: |
+          uv run pytest
