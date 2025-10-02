@@ -17,7 +17,6 @@ keywords = [
     "asyncio",
 ]
 classifiers = [
-    "Development Status :: Pre-release",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
