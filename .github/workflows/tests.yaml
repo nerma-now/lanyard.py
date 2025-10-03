@@ -57,7 +57,7 @@ jobs:
 
       - name: Install project dependencies
         run: |
-          pip install -e ".[dev, test]"
+          uv sync --extra dev --extra test --editable
 
       - name: Run type checking
         run: |

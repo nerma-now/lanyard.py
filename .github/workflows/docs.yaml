@@ -55,7 +55,7 @@ jobs:
 
       - name: Install project dependencies
         run: |
-          pip install -e ".[docs]"
+          uv sync --extra docs
 
       - name: Sphinx build
         run: |
