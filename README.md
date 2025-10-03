@@ -9,6 +9,10 @@
 
 lanyard.py is a modern and fully asynchronous wrapper for Lanyard API written in Python 3.12+.
 
+***Links***:
+
+— [PyPi](https://pypi.org/project/lanyard-py/)
+
 ***Documentation***:
 
 — 🇺🇸 [English](https://nerma-now.github.io/lanyard.py/)
