@@ -19,8 +19,14 @@ templates_path = ['_templates']
 exclude_patterns = []
 
 html_theme = 'alabaster'
-html_static_path = ['_static']
 html_baseurl = 'https://nerma-now.github.io/lanyard.py/'
+
+html_theme_options = {
+    'extra_nav_links': {
+        'PyPI': 'https://pypi.org/project/lanyard-py/',
+        'Github': 'https://github.com/nerma-now/lanyard.py',
+    },
+}
 
 autoclass_content = 'both'
 
