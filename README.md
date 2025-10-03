@@ -1,3 +1,5 @@
+[![Lanyard.py](https://raw.githubusercontent.com/nerma-now/lanyard.py/master/assets/banner.png)](https://github.com/nerma-now/lanyard.py)
+
 # lanyard.py
 
 <p align="center">
