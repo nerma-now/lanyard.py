@@ -15,6 +15,7 @@ keywords = [
     "lanyard",
     "wrapper",
     "asyncio",
+    "http",
 ]
 classifiers = [
     "Intended Audience :: Developers",
