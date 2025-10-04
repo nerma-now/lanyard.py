@@ -38,6 +38,7 @@ Tutorials
     :maxdepth: 2
 
     tutorial/getting-started
+    tutorial/advanced
 
 API Reference
 =============
