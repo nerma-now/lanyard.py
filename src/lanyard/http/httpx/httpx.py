@@ -10,10 +10,8 @@ from lanyard.http.exception import HTTPError
 from .exception import ContextRequiredError
 
 
-# TODO: Requires write description for this code
-
-
 class HTTPX(BaseHTTP):
+    # TODO: Requires write description for this code
     def __init__(
         self,
         base_url: str,
