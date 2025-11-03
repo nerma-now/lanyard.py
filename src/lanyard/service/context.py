@@ -4,8 +4,8 @@ from typing import TYPE_CHECKING, Any
 from pydantic import BaseModel, Field
 
 if TYPE_CHECKING:
+    from lanyard import LanyardConfig
     from lanyard.http import BaseHTTP
-    from lanyard.rest import LanyardConfig
 
 
 class ServiceContext(BaseModel):
