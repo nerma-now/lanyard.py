@@ -1,9 +1,5 @@
-from .response import HTTPResponse
-from .base import BaseHTTP
-from .httpx import HTTPX
+from .aiohttp import AiohttpProvider
+from .base import HttpProvider, HttpResponse
+from .httpx import HttpxProvider
 
-__all__ = [
-    "HTTPResponse",
-    "BaseHTTP",
-    "HTTPX",
-]
+__all__ = ["AiohttpProvider", "HttpProvider", "HttpResponse", "HttpxProvider"]

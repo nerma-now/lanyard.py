@@ -1,6 +1,6 @@
 [project]
-name = "lanyard-py"
-version = "1.0.1"
+name = "lanyard"
+version = "2.0.0"
 description = "lanyard-py is a modern and fully asynchronous wrapper for Lanyard API written in Python 3.12+."
 readme = "README.md"
 license = "MIT"
@@ -10,43 +10,81 @@ authors = [
 maintainers = [
     { name = "Nikita (nerma-now)", email = "n.ermak2021@yandex.by" },
 ]
-keywords = [
-    "api",
-    "lanyard",
-    "wrapper",
-    "asyncio",
-    "http",
-]
+keywords = ["api", "lanyard", "wrapper", "asyncio", "http"]
 classifiers = [
+    "Framework :: AsyncIO",
+    "Typing :: Typed",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 requires-python = ">=3.12"
-dependencies = [
-    "httpx>=0.28.1",
-    "pydantic>=2.11.9",
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19.1",
+    "ruff>=0.14.14",
+    "pre-commit>=4.5.1",
+]
+test = [
+    "pytest>=9.0.2",
+    "pytest-asyncio>=0.25.0",
 ]
 
 [project.optional-dependencies]
-dev = [
-    "black>=25.9.0",
-    "mypy>=1.18.2",
-]
-docs = [
-    "sphinx>=8.2.3",
-]
-test = [
-    "pytest>=8.4.2",
-    "pytest-asyncio>=1.2.0",
-]
+httpx = ["httpx>=0.28.1"]
+aiohttp = ["aiohttp>=3.13.5"]
 
 [project.urls]
 "Homepage" = "https://github.com/nerma-now/lanyard.py"
 "Documentation" = "https://nerma-now.github.io/lanyard.py/"
+"Repository" = "https://github.com/nerma-now/lanyard.py"
+
+[tool.uv]
+managed = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src"]
+exclude = ["docs"]
+
+[tool.ruff.lint]
+select = [
+    "F",
+    "E", "W",
+    "I",
+    "N",
+    "UP",
+    "B",
+    "C4",
+    "A",
+    "RET",
+    "SIM",
+    "TCH",
+    "ASYNC",
+    "PTH",
+    "LOG",
+    "RUF",
+]
+ignore = [
+    "A003",
+    "B008",
+    "ASYNC109",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "T201"]
 
 [tool.mypy]
+mypy_path = "src"
+explicit_package_bases = true
 python_version = "3.12"
 pretty = true
 strict = true
@@ -69,11 +107,11 @@ markers = [
 ]
 
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.hatch.build.targets.wheel]
+packages = ["src/lanyard"]
 
 [[tool.uv.index]]
 name = "lanyard.py"

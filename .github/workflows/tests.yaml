@@ -5,17 +5,17 @@ on:
     branches:
       - master
     paths:
-      - "tests.yaml"
-      - "src/lanyard/**"
-      - "example/**"
+      - ".github/workflows/tests.yaml"
+      - "src/**"
+      - "examples/**"
       - "pyproject.toml"
   pull_request:
     branches:
       - master
     paths:
-      - "tests.yaml"
-      - "src/lanyard/**"
-      - "example/**"
+      - ".github/workflows/tests.yaml"
+      - "src/**"
+      - "examples/**"
       - "pyproject.toml"
 
 jobs:
@@ -23,13 +23,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - ubuntu-latest
-          - macos-latest
-          - windows-latest
-        python-version:
-          - "3.12"
-          - "3.13"
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.12", "3.13"]
 
     defaults:
       run:
@@ -37,35 +32,32 @@ jobs:
 
     runs-on: ${{ matrix.os }}
 
-    env:
-      IS_WINDOWS: ${{ startswith(matrix.os, 'windows') }}
-      IS_UBUNTU: ${{ startswith(matrix.os, 'ubuntu') }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v5
 
-      - name: Set up Python ${{ matrix.python-version }} on ${{ matrix.os }}
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Install project dependencies
         run: |
-          uv sync --extra dev --extra test --editable
+          uv sync --all-groups --all-extras
 
-      - name: Run type checking
+      - name: Run linting (Ruff)
         run: |
-          uv run mypy src/lanyard
-          uv run mypy example
+          uv run ruff check src examples
+          uv run ruff format --check src examples
 
-      - name: Run formatting check
+      - name: Run type checking (MyPy)
         run: |
-          uv run black --check --diff src/lanyard example
+          uv run mypy src
 
-      - name: Run tests
-        run: |
-          uv run pytest
+      # for the future, if tests are written
+      # - name: Run tests
+      #   run: |
+      #     uv run pytest tests
