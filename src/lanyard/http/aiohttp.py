@@ -1,7 +1,13 @@
 from collections.abc import Mapping
-from typing import Any, Literal
+from typing import Any, Literal, TYPE_CHECKING
 
-import aiohttp
+if TYPE_CHECKING:
+    import aiohttp
+else:
+    try:
+        import aiohttp
+    except ImportError:
+        httpx = None
 
 from lanyard.exceptions import LanyardProviderError
 from lanyard.loggers import aiohttp_logger as logger

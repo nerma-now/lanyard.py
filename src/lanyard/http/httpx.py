@@ -1,7 +1,13 @@
 from collections.abc import Mapping
-from typing import Any, Literal
+from typing import TYPE_CHECKING, Any, Literal
 
-import httpx
+if TYPE_CHECKING:
+    import httpx
+else:
+    try:
+        import httpx
+    except ImportError:
+        httpx = None
 
 from lanyard.exceptions import LanyardProviderError
 from lanyard.loggers import httpx_logger as logger
