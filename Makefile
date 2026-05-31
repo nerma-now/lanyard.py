@@ -1,7 +1,8 @@
 PYTHON := uv run
 
 SOURCE_DIR := src
-CODE := $(SOURCE_DIR)
+EXAMPLES_DIR := examples
+CODE := $(SOURCE_DIR) $(EXAMPLES_DIR)
 TESTS := tests
 
 .PHONY: dev

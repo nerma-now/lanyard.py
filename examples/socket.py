@@ -2,10 +2,10 @@ import asyncio
 import logging
 import sys
 
-from lanyard import LanyardClient, AiohttpProvider
+from lanyard import AiohttpProvider, LanyardClient
 
 
-async def main():
+async def main() -> None:
     async with LanyardClient(AiohttpProvider()) as client:
         async for data in client.subscribe(988868966179033189):
             print(data["discord_user"]["username"])

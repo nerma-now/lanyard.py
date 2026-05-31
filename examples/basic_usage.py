@@ -2,10 +2,10 @@ import asyncio
 import logging
 import sys
 
-from lanyard import LanyardClient, LanyardData, HttpxProvider
+from lanyard import HttpxProvider, LanyardClient, LanyardData
 
 
-async def main():
+async def main() -> None:
     async with LanyardClient(HttpxProvider()) as client:
         data: LanyardData = await client.get_user(338718840873811979)
         print(data["discord_user"]["username"])
