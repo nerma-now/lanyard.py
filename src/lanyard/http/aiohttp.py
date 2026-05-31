@@ -1,5 +1,5 @@
 from collections.abc import Mapping
-from typing import Any, Literal, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Literal
 
 if TYPE_CHECKING:
     import aiohttp
