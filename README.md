@@ -93,7 +93,7 @@ The library uses a hierarchy of exceptions for granular error management:
 
 ## Examples
 
-Detailed implementation examples are available in the [example/](https://github.com/nerma-now/lanyard.py/tree/master/example) directory:
+Detailed implementation examples are available in the [example/](https://github.com/nerma-now/lanyard.py/tree/master/examples) directory:
 - Basic REST usage
 - Real-time monitoring via WebSockets
 
